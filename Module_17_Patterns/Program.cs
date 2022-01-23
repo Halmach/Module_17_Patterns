@@ -13,7 +13,7 @@ namespace Module_17_Patterns
 
             //    app.DbConnection = DbConnection.GetConnectionInstance("10.30.60.81");
             //    Console.WriteLine(app.DbConnection.Configuration);
-            ShowFabricMethod();
+            ShowAdapter();
         }
 
         static void ShowAbstractFactory()
@@ -38,6 +38,26 @@ namespace Module_17_Patterns
             // Отправляем заказ по e-mail
             sender = new EmailMessageSender("order@myshop.com");
             Message emailMessage = sender.Send(messageText);
+        }
+
+        static void ShowAdapter()
+        {
+            // Нам надо отрисовать изображение на бумаге и холсте
+            // Запускаем класс для отрисовки
+            var imageDrawer = new ImageDrawer();
+
+            // Создаем класс для работы с бумажным принтером
+            PaperPrinter paperPrinter = new PaperPrinter();
+            // Запускаем отрисовку на бумаге
+            imageDrawer.DrawWith(paperPrinter);
+
+            //Теперь нужна печать на холсте
+            CanvasPainter canvasPainter = new CanvasPainter();
+
+            //Используем адаптер
+            IPrinter ImagePrinter = new CanvasPainterToPRinterAdapter(canvasPainter);
+            //Запускаем печать на холсте
+            imageDrawer.DrawWith(ImagePrinter);
         }
     }
 }
