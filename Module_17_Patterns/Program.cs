@@ -13,7 +13,7 @@ namespace Module_17_Patterns
 
             //    app.DbConnection = DbConnection.GetConnectionInstance("10.30.60.81");
             //    Console.WriteLine(app.DbConnection.Configuration);
-            ShowAdapter();
+            ShowComposite();
         }
 
         static void ShowAbstractFactory()
@@ -58,6 +58,27 @@ namespace Module_17_Patterns
             IPrinter ImagePrinter = new CanvasPainterToPRinterAdapter(canvasPainter);
             //Запускаем печать на холсте
             imageDrawer.DrawWith(ImagePrinter);
+        }
+
+        static void ShowComposite()
+        {
+            // Создание корневой папки
+            Component root = new Folder("Root");
+
+            // Создания файла- компонента низшего уровня
+            File myFile = new File("MyFile.txt");
+            
+            // Создание папки с документами
+            Folder myFolder = new Folder("MyFolder");
+
+            // Добавляем файл в корневую папку
+            root.Add(myFile);
+
+            // Добавляем подпапку для документов в корневую папку
+            root.Add(myFolder);
+
+            // показываем контент корневой папки
+            root.Display();
         }
     }
 }
