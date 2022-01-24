@@ -13,7 +13,7 @@ namespace Module_17_Patterns
 
             //    app.DbConnection = DbConnection.GetConnectionInstance("10.30.60.81");
             //    Console.WriteLine(app.DbConnection.Configuration);
-            ShowComposite();
+            ShowFacade();
         }
 
         static void ShowAbstractFactory()
@@ -79,6 +79,21 @@ namespace Module_17_Patterns
 
             // показываем контент корневой папки
             root.Display();
+        }
+
+        static void ShowFacade()
+        {
+            //при запуске IDE инициализирует объекты для работы с компонентами
+            Editor textEditor = new Editor();
+            Compiller compiller = new Compiller();
+            Runtime runtime = new Runtime();
+
+            //Наша модель IDE запущена и готова к использованию
+            IdeFacade ide = new IdeFacade(textEditor, compiller, runtime);
+
+            //Начинаем писать код и нажимаем кнопку Start
+            ide.Start("Console.WriteLine(\"Hello World)\";"); // запускается выполнение нашей программы
+            ide.Stop();
         }
     }
 }
