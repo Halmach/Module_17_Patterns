@@ -13,7 +13,7 @@ namespace Module_17_Patterns
 
             //    app.DbConnection = DbConnection.GetConnectionInstance("10.30.60.81");
             //    Console.WriteLine(app.DbConnection.Configuration);
-            ShowFacade();
+            ShowChainOfResponsibility();
         }
 
         static void ShowAbstractFactory()
@@ -94,6 +94,20 @@ namespace Module_17_Patterns
             //Начинаем писать код и нажимаем кнопку Start
             ide.Start("Console.WriteLine(\"Hello World)\";"); // запускается выполнение нашей программы
             ide.Stop();
+        }
+
+        static void ShowChainOfResponsibility()
+        {
+            Receiver receiver = new Receiver(false, false, true);
+
+            NotificationHandler email = new EmailNotificationHandler();
+            NotificationHandler sms = new SmsNotificationHandler();
+            NotificationHandler voice = new VoiceNotificationHandler();
+
+            email.Successor = sms;
+            sms.Successor = voice;
+
+            email.Handle(receiver);
         }
     }
 }
