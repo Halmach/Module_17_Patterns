@@ -13,7 +13,7 @@ namespace Module_17_Patterns
 
             //    app.DbConnection = DbConnection.GetConnectionInstance("10.30.60.81");
             //    Console.WriteLine(app.DbConnection.Configuration);
-            ShowChainOfResponsibility();
+            ShowState();
         }
 
         static void ShowAbstractFactory()
@@ -108,6 +108,16 @@ namespace Module_17_Patterns
             sms.Successor = voice;
 
             email.Handle(receiver);
+        }
+
+        static void ShowState()
+        {
+            // инициализируем лифт(находится на земле)
+            Elevator elevator = new Elevator(new GroundElevatorState());
+
+            elevator.Down(); // спуск лифта в подвал
+            elevator.Up(); // подъем  лифта на первый этаж
+            elevator.Up(); // подъем лифта на верхний этаж
         }
     }
 }
