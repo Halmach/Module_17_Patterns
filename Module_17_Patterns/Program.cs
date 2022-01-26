@@ -13,7 +13,7 @@ namespace Module_17_Patterns
 
             //    app.DbConnection = DbConnection.GetConnectionInstance("10.30.60.81");
             //    Console.WriteLine(app.DbConnection.Configuration);
-            ShowState();
+            ShowObserver();
         }
 
         static void ShowAbstractFactory()
@@ -118,6 +118,22 @@ namespace Module_17_Patterns
             elevator.Down(); // спуск лифта в подвал
             elevator.Up(); // подъем  лифта на первый этаж
             elevator.Up(); // подъем лифта на верхний этаж
+        }
+
+        static void ShowObserver()
+        {
+            Stock stock = new Stock();
+
+            var bank = new Bank(stock);
+            var broker = new Broker(stock);
+
+            // Имитация торгов
+            stock.Market();
+
+            // брокер прекращает наблюдать за торгами
+            broker.StopTrade();
+
+            stock.Market();
         }
     }
 }
