@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Module_17_Patterns
 {
@@ -6,7 +7,7 @@ namespace Module_17_Patterns
     {
         static void Main(string[] args)
         {
-            ShowOpenClosePrinciple();
+            ShowLiskovSubstitutionPrinciple();
         }
 
         static void ShowSingleResponsibility()
@@ -27,6 +28,25 @@ namespace Module_17_Patterns
 
             // посадка на воду
             boardComputer.PerformLanding(new WaterLandingProfile());
+        }
+
+        static void ShowLiskovSubstitutionPrinciple()
+        {
+            // Новый список полётов
+            var flightsList = new List<Flight>()
+            {
+                new DomesticFlight("Mow-32", new List<string>() {"Вася", "Петя"}),
+                new DomesticFlight("SPB-14", new List<string>() {"Андрей"})
+            };
+
+            // Считаем пассажиров
+            FlightPassengerCount(flightsList);
+        }
+
+        public static void FlightPassengerCount(List<Flight> flights)
+        {
+            foreach (var flight in flights)
+                flight.CountPassengers();
         }
     }
 }
