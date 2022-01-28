@@ -6,13 +6,14 @@ namespace Module_17_Patterns
     {
         static void Main(string[] args)
         {
-            Application app = new Application();
+            ShowSingleResponsibility();
+        }
 
-            app.Launch("10.30.60.80");
-            Console.WriteLine(app.DbConnection.Configuration);
-
-            app.DbConnection = DbConnection.GetConnectionInstance("10.30.60.81");
-            Console.WriteLine(app.DbConnection.Configuration);
+        static void ShowSingleResponsibility()
+        {
+            PdfExport exporter = new PdfExport();
+            Document doc = new Document();
+            doc.Export(exporter);
         }
     }
 }
