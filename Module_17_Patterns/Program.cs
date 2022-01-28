@@ -7,7 +7,7 @@ namespace Module_17_Patterns
     {
         static void Main(string[] args)
         {
-            ShowInterfaceSegregationPrinciple();
+            ShowDependencyInversionPrinciple();
         }
 
         static void ShowSingleResponsibility()
@@ -62,6 +62,17 @@ namespace Module_17_Patterns
 
             Console.WriteLine("Садимся в джип");
             driver.Drive(new Suv());
+        }
+
+        static void ShowDependencyInversionPrinciple()
+        {
+            //  выводим на монитор
+            var connectedMonitor = new VideoAdapter(new Monitor());
+            connectedMonitor.Display();
+
+            //  выводим на телевизор
+            var connectedTv = new VideoAdapter(new Tv());
+            connectedTv.Display();
         }
     }
 }
