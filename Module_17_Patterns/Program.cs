@@ -6,7 +6,7 @@ namespace Module_17_Patterns
     {
         static void Main(string[] args)
         {
-            ShowSingleResponsibility();
+            ShowOpenClosePrinciple();
         }
 
         static void ShowSingleResponsibility()
@@ -14,6 +14,19 @@ namespace Module_17_Patterns
             PdfExport exporter = new PdfExport();
             Document doc = new Document();
             doc.Export(exporter);
+        }
+        
+        static void ShowOpenClosePrinciple()
+        {
+            var boardComputer = new BoardComputer();
+
+            // посадка на землю
+            boardComputer.PerformLanding(new GroundLandingProfile());
+
+            Console.WriteLine();
+
+            // посадка на воду
+            boardComputer.PerformLanding(new WaterLandingProfile());
         }
     }
 }
