@@ -7,7 +7,7 @@ namespace Module_17_Patterns
     {
         static void Main(string[] args)
         {
-            ShowLiskovSubstitutionPrinciple();
+            ShowInterfaceSegregationPrinciple();
         }
 
         static void ShowSingleResponsibility()
@@ -47,6 +47,21 @@ namespace Module_17_Patterns
         {
             foreach (var flight in flights)
                 flight.CountPassengers();
+        }
+
+        static void ShowInterfaceSegregationPrinciple()
+        {
+            // наш водитель
+            var driver = new Driver();
+
+            // водителю всё равно, на чём ехать
+            Console.WriteLine("Садимся в седан");
+            driver.Drive(new Sedane());
+
+            Console.WriteLine();
+
+            Console.WriteLine("Садимся в джип");
+            driver.Drive(new Suv());
         }
     }
 }
