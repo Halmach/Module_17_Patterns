@@ -5,7 +5,7 @@ using System.Text;
 namespace Module_17_Patterns
 {
     class Monster
-    {
+    { 
         private IWeapon _weapon;
         private IMovement _movement;
 
